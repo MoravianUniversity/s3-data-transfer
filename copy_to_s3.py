@@ -37,14 +37,13 @@ def main():
         for filename in files:
             local_path = os.path.join(root, filename) # get the full absolute path of the file
             s3_path = os.path.relpath(local_path, data_dir) # get the relative path of the file from within the data directory 
-            # upload_to_s3(s3, local_path, s3_path)
+            upload_to_s3(s3, local_path, s3_path)
             
             # below is just for logging purposes
             mb_uploaded += os.path.getsize(local_path) / 10**6 # convert bytes to MB
             files_uploaded += 1
             if files_uploaded % 500 == 0:  # log every 500 files
-                cur_agency = root.removeprefix(data_dir + '/').split('/')[0] # get the current agency (easy to verify in s3)
-                print(f"{mb_uploaded:.2f} MB uploaded, {files_uploaded} files uploaded, Working on: {cur_agency}")
+                print(f"{mb_uploaded:.2f} MB uploaded, {files_uploaded} files uploaded, Last S3 Object uploaded : {s3_path}")
                
 
 
