@@ -1,4 +1,4 @@
-To get this to run locally:
+copy_to_s3 will copy the entire directory structure from ~/data/data into an S3 bucket called mirrulations-data. 
 
 	- In ~/.aws you will need a file called credentials which will contain the following:
 
